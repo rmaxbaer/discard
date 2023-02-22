@@ -1,0 +1,27 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dishplease-staging-213910-authRole",
+      "UnauthRoleArn": "arn:aws:iam::879803462460:role/amplify-dishplease-staging-213910-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::879803462460:role/amplify-dishplease-staging-213910-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-dishplease-staging-213910-deployment",
+      "UnauthRoleName": "amplify-dishplease-staging-213910-unauthRole",
+      "StackName": "amplify-dishplease-staging-213910",
+      "StackId": "arn:aws:cloudformation:us-west-2:879803462460:stack/amplify-dishplease-staging-213910/83bce850-af0b-11ed-8d07-067554fc698b",
+      "AmplifyAppId": "d2xu8wobjj7dpq"
+    },
+    "categories": {
+      "auth": {
+        "dishpleaseapp": {},
+        "DishPlease": {}
+      },
+      "api": {
+        "dishpleaseapp": {}
+      },
+      "storage": {
+        "s3dishpleasestorageb4b6b38e": {}
+      }
+    }
+  }
+}

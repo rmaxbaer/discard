@@ -1,0 +1,53 @@
+type Lists @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  ListRestaurants: [Restaurant] @manyToMany(relationName: "ListsRestaurant")
+  profileID: ID! @index(name: "byProfile")
+}
+
+type Comment @model @auth(rules: [{allow: public}, {allow: owner}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  text: String!
+  reviewID: ID! @index(name: "byReview")
+  profileID: ID! @index(name: "byProfile")
+}
+
+type Profile @model @auth(rules: [{allow: public}, {allow: owner, operations: [read, update, delete]}]) {
+  id: ID!
+  Reviews: [Review] @hasMany(indexName: "byProfile", fields: ["id"])
+  firstName: String!
+  lastName: String!
+  username: String!
+  LikedReviews: [Review] @manyToMany(relationName: "ReviewProfile")
+  Comments: [Comment] @hasMany(indexName: "byProfile", fields: ["id"])
+  UserLists: [Lists] @hasMany(indexName: "byProfile", fields: ["id"])
+}
+
+type Restaurant @model @auth(rules: [{allow: public}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  Reviews: [Review] @hasMany(indexName: "byRestaurant", fields: ["id"])
+  name: String!
+  phone: AWSPhone
+  googleKey: String
+  listss: [Lists] @manyToMany(relationName: "ListsRestaurant")
+  iconImage: String
+  coverImage: String
+}
+
+type ReviewImage @model @auth(rules: [{allow: public}, {allow: owner}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  imageUrl: String!
+  reviewID: ID! @index(name: "byReview")
+}
+
+type Review @model @auth(rules: [{allow: public}, {allow: owner}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  profileID: ID! @index(name: "byProfile")
+  restaurantID: ID! @index(name: "byRestaurant")
+  rating: Int!
+  body: String
+  ReviewImages: [ReviewImage] @hasMany(indexName: "byReview", fields: ["id"])
+  LikedBy: [Profile] @manyToMany(relationName: "ReviewProfile")
+  Comments: [Comment] @hasMany(indexName: "byReview", fields: ["id"])
+}
+       

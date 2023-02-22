@@ -1,0 +1,10 @@
+{
+  "resourceName": "s3dishpleasestorageb4b6b38e",
+  "bucketName": "dishplease-storage-b4b6b38e",
+  "policyUUID": "9a79434b",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE"
+  ]
+}
